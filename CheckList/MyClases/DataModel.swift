@@ -14,6 +14,18 @@ class DataModel {
     var fileName: String
     // --------------------
     
+    // Computed properties -----------------
+    var indexOfSelectedCheckList: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "CheckListIndex")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "CheckListIndex")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    // -------------------------------------
+    
     // Initializatoros ------
     init(inFile fileName: String) {
         // Create empty masive of list
@@ -23,8 +35,15 @@ class DataModel {
         // Part 2
         // Download masive of list from file
         loadCheckList()
+        registerDefaults()
     }
     // ----------------------
+    
+    // Functions ---------------------
+    func registerDefaults() {
+        UserDefaults.standard.register(defaults: [ "CheckListIndex" : -1 ])
+    }
+    // -------------------------------
     
     // Save and load data ---------------------------------------------------------------------
     // I return the directory for program working

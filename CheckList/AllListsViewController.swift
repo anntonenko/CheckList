@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     
     // Properties -----------------------
     var dataModel: DataModel!
@@ -21,7 +21,20 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         // The following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
-    // I know how many cells will be in the screen
+    // UIKit automatically calls this method after the view controller has become visible (I invoke last)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Tell to the navigation controller that I will your delegate
+        navigationController?.delegate = self
+        // If app wasn't tarminated in main screen
+        let index = dataModel.indexOfSelectedCheckList
+        if index >= 0 && index < dataModel.lists.count {
+            // Open screen where app was termanated
+            performSegue(withIdentifier: "ShowCheckList", sender: dataModel.lists[index])
+        }
+    }
+    
+    // I know how many cells must be
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return dataModel.lists.count
@@ -39,6 +52,9 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
     // I implement when row with it indexPath was selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Store the index of the selected row into UserDefaults under the key "CheckListIndex"
+        dataModel.indexOfSelectedCheckList = indexPath.row
         
         let checkList = dataModel.lists[indexPath.row]
         
@@ -165,6 +181,15 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     // --------------------------------------------------------------------------------------------------------------------
     
+    // For Delegate (protocol UINavigationControllerDelegete)------------------------------------------------------------------------------
+    // This method is called whenewer the navigation controller will slide to a new screen
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        // Was the back button tupped?
+        if viewController === self {
+            dataModel.indexOfSelectedCheckList = -1
+        }
+    }
+    // ------------------------------------------------------------------------------------------------------------------------------------
     
 }
 
