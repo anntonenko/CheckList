@@ -173,22 +173,27 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
     // I know what to do when you wont to add item
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checkList: CheckList) {
-        let newRowIndex = dataModel.lists.count
+        // To insert the new row manually (Comented lines) is no longer necessary becouse we are updating the cell's
+        //let newRowIndex = dataModel.lists.count
         
         dataModel.lists.append(checkList)
-        
-        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .automatic)
+        dataModel.sortCheckLists()
+        tableView.reloadData()  // This line is culprit
+        //tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .automatic)
         
         dismiss(animated: true, completion: nil)
     }
     // I know what to do when you wont to edit item
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checkList: CheckList) {
-        if let index = dataModel.lists.index(of: checkList) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.textLabel?.text = checkList.name
-            }
-        }
+        // To insert the new row manually (Comented lines) is no longer necessary becouse we are updating the cell's
+        //if let index = dataModel.lists.index(of: checkList) {
+        //    let indexPath = IndexPath(row: index, section: 0)
+        //    if let cell = tableView.cellForRow(at: indexPath) {
+        //        cell.textLabel?.text = checkList.name
+        //    }
+        //}
+        dataModel.sortCheckLists()
+        tableView.reloadData() // This line is culprit
         dismiss(animated: true, completion: nil)
     }
     

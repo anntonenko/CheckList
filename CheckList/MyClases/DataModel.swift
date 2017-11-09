@@ -43,6 +43,13 @@ class DataModel {
     func registerDefaults() {
         UserDefaults.standard.register(defaults: [ "CheckListIndex" : -1 ])
     }
+    // Sort lists by name
+    func sortCheckLists() {
+        lists.sort() {
+            checkList1, checkList2 in
+            return checkList1.name.localizedStandardCompare(checkList2.name) == .orderedAscending
+        }
+    }
     // -------------------------------
     
     // Save and load data ---------------------------------------------------------------------
@@ -74,6 +81,7 @@ class DataModel {
             lists = unrchiver.decodeObject(forKey: fileName) as! [CheckList]
             unrchiver.finishDecoding()
         }
+        sortCheckLists()
     }
     // -------------------------------------------------------------------------------
 }
