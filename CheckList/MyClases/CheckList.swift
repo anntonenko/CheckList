@@ -15,6 +15,16 @@ class CheckList: NSObject, NSCoding {
     var items: [CheckListItem] = []
     // -----------------
     
+    // Computer properties -------------
+    var countUncheckedItems: Int {
+        var count = 0
+        for item in items where !item.chacked {
+            count += 1
+        }
+        return count
+    }
+    // ---------------------------------
+    
     // Initializators -----------
     init(_ name: String) {
         self.name = name

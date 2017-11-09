@@ -21,6 +21,11 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         // The following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
+    // I am called before viewDidAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     // UIKit automatically calls this method after the view controller has become visible (I invoke last)
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -43,10 +48,18 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = makeCell(for: tableView, withIdentifier: "Cell")
+        let checkList = dataModel.lists[indexPath.row]
         // Configure the cell...
-        cell.textLabel?.text = dataModel.lists[indexPath.row].name
+        cell.textLabel?.text = checkList.name
         cell.accessoryType = .detailDisclosureButton
-        cell.detailTextLabel?.text = "All Done :)"
+        let count = checkList.countUncheckedItems
+        if checkList.items.count == 0 {
+            cell.detailTextLabel?.text = "(No Items)"
+        } else if count == 0 {
+            cell.detailTextLabel?.text = "All Done!"
+        } else {
+            cell.detailTextLabel?.text = "\(checkList.countUncheckedItems) Remaining"
+        }
         
         return cell
     }
