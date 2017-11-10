@@ -52,6 +52,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         // Configure the cell...
         cell.textLabel?.text = checkList.name
         cell.accessoryType = .detailDisclosureButton
+        cell.imageView?.image = UIImage(named: checkList.iconName)
+        
         let count = checkList.countUncheckedItems
         if checkList.items.count == 0 {
             cell.detailTextLabel?.text = "(No Items)"

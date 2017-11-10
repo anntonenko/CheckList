@@ -17,6 +17,7 @@
 		039D34481FA246CA00B2C325 /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D34471FA246CA00B2C325 /* CheckList.swift */; };
 		03ABAB831FA3A23000D82CCB /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABAB821FA3A23000D82CCB /* ListDetailViewController.swift */; };
 		03DAE2AC1FA8668400F9779A /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAE2AB1FA8668400F9779A /* DataModel.swift */; };
+		03EA2CCC1FB4D96C00BDA909 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EA2CCB1FB4D96C00BDA909 /* IconPickerViewController.swift */; };
 		03F55A0B1F7A885000A49290 /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F55A0A1F7A885000A49290 /* CheckListItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		039D34471FA246CA00B2C325 /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		03ABAB821FA3A23000D82CCB /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		03DAE2AB1FA8668400F9779A /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		03EA2CCB1FB4D96C00BDA909 /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 		03F55A0A1F7A885000A49290 /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				0312BCC91F79221200174052 /* AppDelegate.swift */,
 				039D34451FA21F3500B2C325 /* AllListsViewController.swift */,
 				03ABAB821FA3A23000D82CCB /* ListDetailViewController.swift */,
+				03EA2CCB1FB4D96C00BDA909 /* IconPickerViewController.swift */,
 				0312BCCB1F79221200174052 /* CheckListViewController.swift */,
 				0328A67A1F86B6BF0036E5CF /* ItemDetailViewController.swift */,
 				0312BCCD1F79221300174052 /* Main.storyboard */,
@@ -165,6 +168,7 @@
 				03F55A0B1F7A885000A49290 /* CheckListItem.swift in Sources */,
 				03ABAB831FA3A23000D82CCB /* ListDetailViewController.swift in Sources */,
 				0328A67B1F86B6BF0036E5CF /* ItemDetailViewController.swift in Sources */,
+				03EA2CCC1FB4D96C00BDA909 /* IconPickerViewController.swift in Sources */,
 				0312BCCC1F79221200174052 /* CheckListViewController.swift in Sources */,
 				039D34461FA21F3500B2C325 /* AllListsViewController.swift in Sources */,
 				03DAE2AC1FA8668400F9779A /* DataModel.swift in Sources */,
