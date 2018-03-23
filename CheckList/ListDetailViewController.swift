@@ -20,7 +20,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
     // Properties ----------------------------------------
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var dropDownCell: DropDownCell!
     weak var delegate: ListDetailViewControllerDelegate?
     var checkListToEdit: CheckList?
     var iconName = "Folder"
@@ -65,7 +65,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
             iconName = checkList.iconName
         }
         // Edit image
-        iconImageView.image = UIImage(named: iconName)
+        dropDownCell.iconImageView.image = UIImage(named: iconName)
     }
     // I do the textField is first responder
     override func viewWillAppear(_ animated: Bool) {
@@ -86,13 +86,31 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
     
     // I don't allow to tap on any section besides 1 (To choose an icon)
      override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        print(indexPath.section)
         if indexPath.section == 1 {
             return indexPath
         } else {
             return nil
         }
      }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1, indexPath.row == 0 {
+            if dropDownCell.isTaped {
+                return 108
+            } else {
+                return 44
+            }
+        } else {
+            return 44
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1, indexPath.row == 0 {
+            dropDownCell.startAnimation()
+            tableView.reloadData()
+        }
+    }
     
     
     /*
@@ -149,7 +167,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
     // For IconPickerViewController delegate -----------------------------------------
     func iconPicker(_ picker: IconPickerViewController, didPick iconName: String) {
         self.iconName = iconName
-        iconImageView.image = UIImage(named: iconName)
+        dropDownCell.iconImageView.image = UIImage(named: iconName)
         let _ = navigationController?.popViewController(animated: true)
     }
     // -------------------------------------------------------------------------------
